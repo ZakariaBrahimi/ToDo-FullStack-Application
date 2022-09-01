@@ -5,12 +5,12 @@
 - **Sign up/Sign in**
 - **User Profile**
     - User can edit his profile
-    User should fill in their personal details like-
-    - Name
-    - Gender
-    - E-mail address
-    - Birth date
-    - Telephone number
+    - User should fill in their personal details like-
+      - Name
+      - Gender
+      - E-mail address
+      - Birth date
+      - Telephone number
 - **Create - Edit - Delete a Task**
     - Users can clear all completed Tasks
     - Users can turn any task into either completed or uncompleted
