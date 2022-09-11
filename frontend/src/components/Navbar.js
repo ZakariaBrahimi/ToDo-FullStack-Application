@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function Navbar() {
+    let navigate = useNavigate();
+
+    const logout = ()=>{
+        axios({
+            url: '/auth/logout/',
+            baseURL: 'http://127.0.0.1:8000',
+            method: 'post',
+        }).then(()=>{
+            window.localStorage.removeItem('token')
+            navigate('/login')
+        })
+    }
 
   return (
     <div>
@@ -34,20 +47,36 @@ export default function Navbar() {
                     class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">
                     <Link to=''>Home</Link> 
                 </span>
-                <span
+                {window.localStorage.getItem('token') && <><span
                     class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">
                     <Link to='/profile'>My Profile</Link> 
                 </span>
                 <span
-                    class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">
-                    <Link to='/tasks-list'>Tasks List</Link> 
-                </span>
+                class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">
+                <Link to='/tasks-list'>Tasks List</Link> 
+            </span></>
+                }
+                
             </div>
 
             {/* Auth Links */}
             <div class="flex items-center space-x-5 md:flex">
-                {/* Register */}
-                <span
+                {/* User Logged in */}
+                {window.localStorage.getItem('token') ? <span
+                    className="flex cursor-pointer transition-colors duration-300 font-semibold text-blue-600">
+                    <svg
+                        class="fill-current h-5 w-5 mr-2 mt-0.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        version="1.1"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z" />
+                    </svg>
+
+                    <button onClick={logout}>Log out</button>
+                </span> : <><span
                     class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">
                     <svg
                         class="fill-current h-5 w-5 mr-2 mt-0.5"
@@ -62,23 +91,22 @@ export default function Navbar() {
 
                     <Link to='signup'>Register</Link>
                 </span>
-
-                {/* Login */}
                 <span
-                    class="flex text-gray-600 cursor-pointer transition-colors duration-300 font-semibold text-blue-600">
-                    <svg
-                        class="fill-current h-5 w-5 mr-2 mt-0.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        version="1.1"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z" />
-                    </svg>
+                class="flex text-gray-600 cursor-pointer transition-colors duration-300 font-semibold text-blue-600">
+                <svg
+                    class="fill-current h-5 w-5 mr-2 mt-0.5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z" />
+                </svg>
 
-                    <Link to='login'>Login</Link>
-                </span>
+                <Link to='login'>Login</Link>
+            </span></>
+                }
             </div>
 
             

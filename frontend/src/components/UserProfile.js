@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom"
 
 export default function UserProfile() {
   const first_style = {
@@ -5,7 +6,10 @@ export default function UserProfile() {
   }
   const second_style = {
     backgroundImage: "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80')",
-  } 
+  }
+  if (!window.localStorage.getItem('token')){
+    return <Navigate to='/login' replace />
+  }
   return (
     <div>
       {/* component */} 

@@ -20,7 +20,7 @@ function App() {
         <Route path='/profile'    element={<UserProfile />}/> 
         <Route path='/login'      element={<Login />}      />       
         <Route path='/signup'     element={<Signup />}     />      
-        <Route path='/Page_404'   element={<Page404 />}    />     
+        <Route path='*' element={<Page404 />}    />     
       </Routes>
       
     </div>
