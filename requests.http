@@ -1,4 +1,4 @@
-### Login
+### Login -> Done
 POST http://127.0.0.1:8000/auth/login/ HTTP/1.1
 Content-Type: application/json
 
@@ -9,18 +9,25 @@ Content-Type: application/json
 
 ### User Detials
 GET http://127.0.0.1:8000/auth/user/ HTTP/1.1
-Authorization: Token 87c4a2f123aa4227a1337c2a5c1d63a9d4081d88
+Authorization: Token c74fbc4ac61c99ba10d7f3d379fc0a3e332b8d67
 
-### Log out
+### Log out -> Done
 POST http://127.0.0.1:8000/auth/logout/ HTTP/1.1
 
-### Registeration
+### Registeration -> Doing
 POST http://127.0.0.1:8000/auth/registration/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username":  "tedx",
-    "password1": "aze1232000",
-    "password2": "aze1232000",
-    "email": "tedx.batna2.univ@gmail.com"
+    "username":  "tedx00",
+    "password1": "aze123200",
+    "password2": "aze123200",
+    "email": "tedx.ba0t0na2.univ@gmail.com"
+}
+### Verifying Email
+POST http://127.0.0.1:8000/auth/registration/verify-email/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "key": "MTc:1oXNlY:vWhEkpbhcdmWUZXAyhuBEgQJOKeI_SGSuvCHIK3szis"
 }

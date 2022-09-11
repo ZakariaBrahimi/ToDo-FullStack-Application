@@ -12,9 +12,9 @@ const Login = () => {
     const login = (e)=>{
         e.preventDefault()
         axios({
+            baseURL: 'http://127.0.0.1:8000',
             url: '/auth/login/',
             method: 'post',
-            baseURL: 'http://127.0.0.1:8000',
             headers:{
                 'Content-Type': 'application/json',
             },
@@ -27,7 +27,9 @@ const Login = () => {
             window.localStorage.setItem('token', response.data.key)
             console.log(window.localStorage.getItem('token  '));
             navigate('/profile/')
-        }).catch((err)=>console.log(err))
+        }).catch((err)=>{
+            console.log(err.response.data.non_field_errors[0])
+        })
     }
     if (window.localStorage.getItem('token')){
         return <Navigate to='/profile' replace />

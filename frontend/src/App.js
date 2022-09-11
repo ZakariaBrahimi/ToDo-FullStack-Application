@@ -1,19 +1,16 @@
-import TasksList  from './components/TasksList'
+import TasksList  from './pages/TasksList'
 import Navbar  from './components/Navbar'
 import {Routes, Route} from 'react-router-dom'
-import HomePage from './components/HomePage';
-import UserProfile from './components/UserProfile';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Page404 from './components/Page404';
+import HomePage from './pages/HomePage';
+import UserProfile from './pages/UserProfile';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Page404 from './pages/Page404';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-
-
-
       <Routes>
         <Route path='/tasks-list' element={<TasksList />}  />   
         <Route path='/'           element={<HomePage />}   />    
