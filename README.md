@@ -25,4 +25,6 @@
 - **JavaScript Framework** — React.js
 - **CSS Framework** — Tailwind CSS
 - **SQL data storage** — PostgreSQL or SQLite
-- **Hosting** — Heroku.
+- **Hosting** — [Heroku](https://www.heroku.com/) - [Vercel](https://vercel.com/).
+- **Python Packages:** — [Requests: HTTP for Humans](https://requests.readthedocs.io/en/latest/) - [django-allauth](https://django-allauth.readthedocs.io/) - [django-cors-headers](https://github.com/adamchainz/django-cors-headers) - [djangorestframework](https://www.django-rest-framework.org/)
+- **React Packages:** — [axios](https://axios-http.com/docs/intro)
