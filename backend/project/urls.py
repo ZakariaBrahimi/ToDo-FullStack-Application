@@ -30,6 +30,7 @@ class CustomTemplateView(TemplateView):
         return render(request, self.template_name, {})
 
 urlpatterns = [
+    path('api/', include('todo_app.api.urls', namespace='api')),
     path('admin/', admin.site.urls),
     #path('api-auth/', include('rest_framework.urls')),
     path('auth/', include('dj_rest_auth.urls')),

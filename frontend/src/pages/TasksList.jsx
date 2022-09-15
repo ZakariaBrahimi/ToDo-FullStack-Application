@@ -1,6 +1,40 @@
 import Task from '../components/Task'
+import { useEffect, useState} from 'react'
+import axios from 'axios'
+import AddTask from '../components/AddTask'
 
 export default function TasksList() {
+  const [tasks, setTasks] = useState([])
+  const [newTask, setNewTask] = useState('')
+  const addTask = (e)=>{
+    e.preventDefault();
+    console.log(e)
+    axios({
+          baseURL: "http://127.0.0.1:8000",
+          method: 'post',
+          url: '/api/add-task/',
+          headers:{
+            "Authorization": `Token ${window.localStorage.getItem('token')}`,
+            "Content-Type" : 'application/json' 
+          },
+          data:{
+            'task': newTask
+          }
+        }).then(()=>{
+          console.log('done')
+        })
+      }
+  useEffect(()=>{
+    axios({
+      baseURL: "http://127.0.0.1:8000",
+      url: '/api/tasks-list/',
+      method: 'get',
+      headers:{"Authorization": `Token ${window.localStorage.getItem('token')}`}
+    }).then((response)=>{      
+      setTasks([response.data])
+      console.log('use effect activated')
+    })
+  }, [newTask]) // applying side effect only when tasks list is change
   return (
     <div>
 <div class=" mt-16 h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -8,22 +42,16 @@ export default function TasksList() {
         { /* Header Section */} 
         <div class="mb-4">
             <h1 class="text-gray-800 font-semibold text-2xl">Todo List</h1>
-            <div class="flex mt-4">
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Todo" />
-                <button
-            type="button"
-            class=" flex bg-blue-600 text-gray-100 px-6  items-center  hover:bg-blue-500 hover:text-gray-200 rounded-md"
-          >
-            <span>Add</span>
-            
-          </button>
-            </div>
+            <AddTask taskStatus={newTask} setNewTask={setNewTask} addTask={addTask}/>
         </div>
-        
-        <Task/>
+        {
+          tasks.map((task)=>{
+            return <Task  key={task['id']} task={task}/>
+          })
+        }
         { /* Footer Section */}
         <div class="flex text-gray-600 mt-5 place-content-evenly">
-        <span>3 Tasks left</span>
+        <span>{tasks.length} Tasks left</span>
         <span>
           <button type='submit'>Clear All Completed Tasks</button>
         </span>
