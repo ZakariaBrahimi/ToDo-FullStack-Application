@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
+import EditTask from './EditTask'
 
 export default function Task({task}) {
+  //console.log(task[0]['task'])
   const [isComplete, setIsComplete] = useState(task['isComplete'])
   const [isremoved, setIsRemoved] = useState(false)
   const editHandler = ()=>{}
@@ -52,7 +54,8 @@ export default function Task({task}) {
         <div className="">
           <button onClick={statusHandler} className="flex-no-shrink p-2 ml-2 border-2 rounded text-green-600 border-green-600 hover:text-white  hover:bg-green-600">{isComplete ? "Done" : "Not Done"}</button>
           <button onClick={removeHandler} className="flex-no-shrink p-2 ml-2 border-2 rounded text-red-600 border-red-600 hover:text-white hover:bg-red-600">Remove</button>
-          <button onClick={editHandler} className="flex-no-shrink p-2  ml-2 border-2 rounded text-blue-600 border-blue-600 hover:text-white hover:bg-blue-600">Edit</button>
+          <EditTask />
+          {/*<button onClick={editHandler}   className="flex-no-shrink p-2  ml-2 border-2 rounded text-blue-600 border-blue-600 hover:text-white hover:bg-blue-600">Edit</button>*/}
         </div>
       </div>
       <hr/>

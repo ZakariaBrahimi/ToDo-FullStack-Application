@@ -31,7 +31,7 @@ export default function Navbar() {
                 
                     <h3 class="text-2xl font-medium text-blue-500">
                         <img
-                            class="h-10"
+                            className="h-10"
                             src="https://stackoverflow.design/assets/img/logos/so/logo-stackoverflow.svg"
                             alt="Store Logo" />
                     </h3>

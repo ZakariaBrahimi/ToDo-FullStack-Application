@@ -40,6 +40,16 @@ def removeTask(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addTask(request):
+    # Add a new task
     new_task = Todo(user=request.user, task=request.data['task'])
     new_task.save()
     return Response({'new task has created successfuly'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def clearAllCompletedTasks(request):
+    completed_tasks = Todo.objects.filter(isComplete=True, user=request.user.id)
+    if completed_tasks:
+        completed_tasks.delete()
+        return Response('all completed tasks has been deleted successfully')
+    return Response('There are no completed tasks.')

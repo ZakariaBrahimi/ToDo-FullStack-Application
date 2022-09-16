@@ -63,3 +63,8 @@ Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
 {
     "task": "hello world from httpssss"
 }
+
+### Clear all tasks
+POST http://127.0.0.1:8000/api/clear-all-completed-tasks/ HTTP/1.1
+Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
+Content-Type: application/json

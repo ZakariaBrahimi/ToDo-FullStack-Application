@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd backend
+cd backend/env/bin
+
 
 
 
