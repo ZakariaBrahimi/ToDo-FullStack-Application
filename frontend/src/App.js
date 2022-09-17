@@ -6,13 +6,15 @@ import UserProfile from './pages/UserProfile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Page404 from './pages/Page404';
+import EditTask from './pages/EditTask';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path='/tasks-list' element={<TasksList />}  />   
+        <Route path='/tasks-list' element={<TasksList />}  />
+        <Route path='/edit-task' element={<EditTask />}  />
         <Route path='/'           element={<HomePage />}   />    
         <Route path='/profile'    element={<UserProfile />}/> 
         <Route path='/login'      element={<Login />}      />       

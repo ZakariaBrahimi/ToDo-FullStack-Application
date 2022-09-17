@@ -26,7 +26,6 @@ export default function Navbar() {
             <Link to=''>
             <div class="flex items-center">
                 {/* Logo */}
-                
                 <span class="cursor-pointer">
                 
                     <h3 class="text-2xl font-medium text-blue-500">
@@ -37,7 +36,6 @@ export default function Navbar() {
                     </h3>
                      
                 </span>
-                
             </div>
             </Link>
             {/* Links Section */}
@@ -60,7 +58,7 @@ export default function Navbar() {
             </div>
 
             {/* Auth Links */}
-            <div class="flex items-center space-x-5 md:flex">
+            <div class="flex items-center space-x-5 md:flex w-1/6">
                 {/* User Logged in */}
                 {window.localStorage.getItem('token') ? <span
                     className="flex cursor-pointer transition-colors duration-300 font-semibold text-blue-600">

@@ -1,12 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
-import EditTask from './EditTask'
+import { Link } from "react-router-dom"
 
 export default function Task({task}) {
   //console.log(task[0]['task'])
   const [isComplete, setIsComplete] = useState(task['isComplete'])
   const [isremoved, setIsRemoved] = useState(false)
-  const editHandler = ()=>{}
   const removeHandler = ()=>{
     axios({
       baseURL: "http://127.0.0.1:8000",
@@ -54,12 +53,11 @@ export default function Task({task}) {
         <div className="">
           <button onClick={statusHandler} className="flex-no-shrink p-2 ml-2 border-2 rounded text-green-600 border-green-600 hover:text-white  hover:bg-green-600">{isComplete ? "Done" : "Not Done"}</button>
           <button onClick={removeHandler} className="flex-no-shrink p-2 ml-2 border-2 rounded text-red-600 border-red-600 hover:text-white hover:bg-red-600">Remove</button>
-          <EditTask />
-          {/*<button onClick={editHandler}   className="flex-no-shrink p-2  ml-2 border-2 rounded text-blue-600 border-blue-600 hover:text-white hover:bg-blue-600">Edit</button>*/}
+    
+          <Link to='/edit-task' state={{ data: {id: task['id'], content: task['task']} }} className="flex-no-shrink p-3  ml-2 border-2 rounded text-blue-600 border-blue-600 hover:text-white hover:bg-blue-600" >Edit</Link>
         </div>
       </div>
-      <hr/>
-      
+      <hr/> 
     </div>
   )
 }

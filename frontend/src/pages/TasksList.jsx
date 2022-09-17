@@ -32,12 +32,11 @@ export default function TasksList() {
         "Authorization": `Token ${window.localStorage.getItem('token')}`
       }
     }).then((response)=>{
-      console.log(response.data)
-    })
+      console.log(response.data) //TODO: handel the success alert functionality
+    }).catch((err)=>console.log(err)) //TODO: handel the error alert functionality
   }
   
   if(window.localStorage.getItem('token')){
-
     return (
       <div>
   <div class=" mt-16 h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -65,6 +64,5 @@ export default function TasksList() {
   </div>
       </div>
     )}
-  
 
 }

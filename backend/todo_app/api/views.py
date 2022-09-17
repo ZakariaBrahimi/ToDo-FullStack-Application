@@ -53,3 +53,12 @@ def clearAllCompletedTasks(request):
         completed_tasks.delete()
         return Response('all completed tasks has been deleted successfully')
     return Response('There are no completed tasks.')
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def editTask(request):
+    task = get_object_or_404(Todo, user=request.user.id, id=request.data['id'])
+    if task.task != request.data['task']:
+        task.task = request.data['task']
+        task.save()
+        return Response('Task has been changed successfully')
+    return Response('No changes applied')

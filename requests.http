@@ -43,7 +43,7 @@ Content-Type: application/json
 Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
 
 {
-    "id": 10
+    "id": 95
 }
 
 ### Remove the task
@@ -55,7 +55,7 @@ Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
     "id": 7
 }
 
-### Remove the task
+### Add a task
 POST http://127.0.0.1:8000/api/add-task/ HTTP/1.1
 Content-Type: application/json
 Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
@@ -68,3 +68,13 @@ Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
 POST http://127.0.0.1:8000/api/clear-all-completed-tasks/ HTTP/1.1
 Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
 Content-Type: application/json
+
+### Edit task
+POST http://127.0.0.1:8000/api/edit-task/ HTTP/1.1
+Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
+Content-Type: application/json
+
+{
+    "id": 105,
+    "task": "hello world from httpssss"
+}
