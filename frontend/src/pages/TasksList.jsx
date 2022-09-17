@@ -1,13 +1,15 @@
 import Task from '../components/Task'
-import { useEffect, useState} from 'react'
+import { useEffect, useContext} from 'react'
 import axios from 'axios'
 import AddTask from '../components/AddTask'
 import {useNavigate} from 'react-router-dom'
+import TasksListGlobalState from '../Context/TasksListGlobalState'
+import Footer from '../components/Footer'
 
 export default function TasksList() {
   let navigate = useNavigate()
-  const [tasks, setTasks] = useState([])
-  
+  const {tasks, setTasks} = useContext(TasksListGlobalState)
+
   useEffect(()=>{
     axios({
       baseURL: "http://127.0.0.1:8000",
@@ -17,52 +19,30 @@ export default function TasksList() {
     }).then((response)=>{      
       const data = response.data
       setTasks(data)
+      console.log(data)
     }).catch((err)=>{
       console.log(err.response.data.detail)
       navigate('/')
     })
-  }, [navigate]) // applying side effect only when tasks list is change
-  const clearAllCompletedTasks = ()=>{
-    axios({
-      baseURL: "http://127.0.0.1:8000/api",
-      url: "/clear-all-completed-tasks/",
-      method: 'post',
-      headers:{
-        "Content-Type": "application/json",
-        "Authorization": `Token ${window.localStorage.getItem('token')}`
-      }
-    }).then((response)=>{
-      console.log(response.data) //TODO: handel the success alert functionality
-    }).catch((err)=>console.log(err)) //TODO: handel the error alert functionality
-  }
-  
+  }, [navigate, setTasks]) //TODO: applying side effect only when tasks list is change
+
   if(window.localStorage.getItem('token')){
     return (
       <div>
   <div class=" mt-16 h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
     <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-4/6">
           { /* Header Section */} 
-          <div class="mb-4">
-              <h1 class="text-gray-800 font-semibold text-2xl">Todo List</h1>
-              <AddTask />
-          </div>
+              <AddTask setTasks={setTasks}/>
+          {/* Tasks List */}
           {
-            
             tasks.map((task)=>{
-              return <Task  key={task['id']} task={task}/>
+              return <Task setTasks={setTasks} key={task['id']} task={task}/>
             })
           }
           { /* Footer Section */}
-          <div class="flex text-gray-600 mt-5 place-content-evenly">
-          <span>{tasks.length} Tasks left</span>
-          <span>
-            <button onClick={clearAllCompletedTasks} type='button'>Clear All Completed Tasks</button>
-          </span>
-        </div>
-          
+          <Footer tasks={tasks} setTasks={setTasks} />
       </div>
   </div>
       </div>
     )}
-
 }

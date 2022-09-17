@@ -2,10 +2,8 @@ import axios from "axios"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default function Task({task}) {
-  //console.log(task[0]['task'])
-  const [isComplete, setIsComplete] = useState(task['isComplete'])
-  const [isremoved, setIsRemoved] = useState(false)
+export default function Task({task, setTasks}) {
+  const [isRemoved, setIsRemoved] = useState(false)
   const removeHandler = ()=>{
     axios({
       baseURL: "http://127.0.0.1:8000",
@@ -18,10 +16,14 @@ export default function Task({task}) {
       data:{
         'id': task['id']
       }
-    }).then(()=>{
+    }).then((response)=>{
+      const data = response.data
       setIsRemoved(true)
+      setTasks(prev=>data)
     })
   }
+  const [isComplete, setIsComplete] = useState(task['isComplete'])
+  
   const statusHandler = ()=>{
     axios({
       baseURL: "http://127.0.0.1:8000",
@@ -42,7 +44,7 @@ export default function Task({task}) {
       }
     })
   }
-  if (isremoved){
+  if (isRemoved){
     return 
   }
   return (
@@ -60,4 +62,6 @@ export default function Task({task}) {
       <hr/> 
     </div>
   )
-}
+};
+
+

@@ -34,25 +34,37 @@ def removeTask(request):
     # Remove a task
     task = get_object_or_404(Todo, id=request.data['id'], user=request.user.id)
     task.delete()
-    return Response()
+    tasks = Todo.objects.filter(user=request.user.id)
+    print(tasks)
+    serializer = TodoSerializer(tasks, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addTask(request):
     # Add a new task
-    new_task = Todo(user=request.user, task=request.data['task'])
-    new_task.save()
-    return Response({'new task has created successfuly'})
+    if request.data['task']:
+        new_task = Todo(user=request.user, task=request.data['task'])
+        new_task.save()
+        success_message = 'new task has created successfuly'
+        tasks = Todo.objects.filter(user=request.user.id)
+        serializer = TodoSerializer(tasks, many=True)
+        return Response(serializer.data)
+    #return Response('there is nothing to add')
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def clearAllCompletedTasks(request):
-    completed_tasks = Todo.objects.filter(isComplete=True, user=request.user.id)
-    if completed_tasks:
+    try:
+        completed_tasks = Todo.objects.filter(isComplete=True, user=request.user.id)
         completed_tasks.delete()
-        return Response('all completed tasks has been deleted successfully')
-    return Response('There are no completed tasks.')
+        uncompleted_tasks = Todo.objects.filter(user=request.user.id, isComplete=False)
+        success_message = 'all completed tasks has been deleted successfully'
+        serializer = TodoSerializer(uncompleted_tasks, many=True)
+        return Response(serializer.data)
+    except:
+        return Response('There are no completed tasks.')
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def editTask(request):

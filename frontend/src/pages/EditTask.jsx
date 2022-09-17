@@ -25,16 +25,14 @@ const EditTask = () => {
           console.log(response.data) //TODO: handel the success alert functionality
             navigate('/tasks-list')
         }).catch((err)=>console.log(err)) //TODO: handel the error alert functionality
-
     }
-
     return (
     <>
     <div class="flex justify-center">
   <form onSubmit={editTask} class="mb-3 xl:w-96">
     <label for="exampleFormControlTextarea1" class="form-label inline-block mb-2 text-gray-700 text-2xl mt-12"
       >Edit Task</label>
-    <textarea value={task} onChange={(e)=>setTask(e.target.value)}
+    <textarea value={task ? task : data.content} onChange={(e)=>setTask(e.target.value)}
       class="
         form-control
         block
