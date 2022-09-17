@@ -78,3 +78,22 @@ Content-Type: application/json
     "id": 105,
     "task": "hello world from httpssss"
 }
+
+### Password reset
+POST http://127.0.0.1:8000/auth/password/reset/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "tedx.ba0t0na2.univ@gmail.com"
+}
+
+### Password reset confirm
+POST http://127.0.0.1:8000/auth/password/reset/confirm/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "uid": 16,
+    "token": "bbwn7l-c7757e1e175ebf1748a326bb4310b2bb",
+    "new_password1": "Aze1232000+",
+    "new_password2": "Aze1232000+"
+}

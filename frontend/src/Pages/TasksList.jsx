@@ -1,10 +1,10 @@
-import Task from '../components/Task'
+import Task from '../Components/Task'
 import { useEffect, useContext} from 'react'
 import axios from 'axios'
-import AddTask from '../components/AddTask'
+import AddTask from '../Components/AddTask'
 import {useNavigate} from 'react-router-dom'
 import TasksListGlobalState from '../Context/TasksListGlobalState'
-import Footer from '../components/Footer'
+import Footer from '../Components/Footer'
 
 export default function TasksList() {
   let navigate = useNavigate()

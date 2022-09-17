@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import listAllTasks, changeStatus, removeTask, addTask, clearAllCompletedTasks, editTask
-app_name = 'todo_app'
 
 urlpatterns = [
     path('tasks-list/', listAllTasks),

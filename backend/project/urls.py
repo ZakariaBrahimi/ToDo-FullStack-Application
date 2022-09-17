@@ -1,18 +1,3 @@
-"""project URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include, re_path
 from dj_rest_auth.registration.views import VerifyEmailView    
@@ -20,24 +5,40 @@ from allauth.account.views import confirm_email
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
-class CustomTemplateView(TemplateView):
+class AccountConfirmEmailTemplateView(TemplateView):
     template_name='verify_email.html'
     def get(self,request, *args, **kwargs):
         requests.post('http://127.0.0.1:8000/auth/registration/verify-email/', data={'key': kwargs['key']})
         return render(request, self.template_name, {})
 
+class PasswordResetConfirmTemplateView(TemplateView):
+    template_name='password_reset_confirm.html'
+    def post(self,request, *args, **kwargs):
+        r = requests.post('http://127.0.0.1:8000/auth/password/reset/confirm/', data={'uid': kwargs['uidb64'], 'token': kwargs['token'], 'new_password1':request.POST['password1'], 'new_password2':request.POST['password2']})
+        print(r.data())
+        return redirect('http://127.0.0.1:3000/')
+
+
 urlpatterns = [
-    path('api/', include('todo_app.api.urls', namespace='api')),
+    path('auth/password-reset/confirm/',
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
+        name='password-reset-confirm'),
+    # this url is used to generate email content
+    re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',
+        PasswordResetConfirmTemplateView.as_view(template_name="password_reset_confirm.html"),
+        name='password_reset_confirm'),
+    
+    path('api/', include('todo_app.api.urls')),
     path('admin/', admin.site.urls),
     #path('api-auth/', include('rest_framework.urls')),
     path('auth/', include('dj_rest_auth.urls')),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     path('auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'), #TODO: What's the functionality of this email, it's the same -> http://127.0.0.1:8000/auth/account-confirm-email/ == http://127.0.0.1:8000/auth/registration/verify-email/
     re_path(
-        r'^account-confirm-email/(?P<key>[-:\w]+)/$', CustomTemplateView.as_view()
+        r'^account-confirm-email/(?P<key>[-:\w]+)/$', AccountConfirmEmailTemplateView.as_view()
         ,name='account_confirm_email',
     )
 ]

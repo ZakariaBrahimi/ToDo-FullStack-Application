@@ -28,9 +28,8 @@ export default function Signup() {
             navigate('/')
         }).catch((err)=>{
             const errors_data = err.response.data
-            Object.values(errors_data).map((error)=>{
-                console.log(error[0]) //TODO: adding alert functionality
-            })
+            console.log(errors_data)
+            
 
         })
     }
@@ -38,13 +37,13 @@ export default function Signup() {
     <div>
       <div class="max-w-lg mx-auto  bg-white p-8 pb-0 rounded-xl shadow shadow-slate-300">
         <h1 class="text-4xl font-medium">Sign Up</h1>
-        <p class="text-slate-500">Hi, Welcome back 👋</p>
-        <div class="">
+        <p class="text-slate-500">Hi, Welcome 👋</p>
+        {/*<div class=""> TODO: add a signup functionality using google account
           
             <button class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150" >
                 <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-6 h-6" alt="" /> <span>Sign Up with Google</span>
             </button>
-        </div>
+  </div>*/}
         <form onSubmit={signup} class="my-10">
             <div class="flex flex-col space-y-5">
                 <label for="username">
