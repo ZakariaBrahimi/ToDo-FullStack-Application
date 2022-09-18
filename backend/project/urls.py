@@ -18,7 +18,8 @@ class PasswordResetConfirmTemplateView(TemplateView):
     template_name='password_reset_confirm.html'
     def post(self,request, *args, **kwargs):
         r = requests.post('http://127.0.0.1:8000/auth/password/reset/confirm/', data={'uid': kwargs['uidb64'], 'token': kwargs['token'], 'new_password1':request.POST['password1'], 'new_password2':request.POST['password2']})
-        print(r.data())
+        print(r.text)
+        requests.post('http://127.0.0.1:3000/', data=r.text)
         return redirect('http://127.0.0.1:3000/')
 
 
