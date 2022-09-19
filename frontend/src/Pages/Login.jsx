@@ -11,7 +11,7 @@ const Login = () => {
     const login = (e)=>{
         e.preventDefault()
         axios({
-            baseURL: process.env.REACT_APP_API_URL,
+            baseURL: 'https://todo-fullstack-application-production.up.railway.app',
             url: '/auth/login/',
             method: 'post',
             headers:{
@@ -24,9 +24,11 @@ const Login = () => {
         }
         ).then((response)=>{
             window.localStorage.setItem('token', response.data.key)
+            console.log("this is response")
             console.log(window.localStorage.getItem('token  '));
             navigate('/profile/')
         }).catch((err)=>{
+            console.log("this is error")
             console.log(err.response.data.non_field_errors[0])
         })
     }

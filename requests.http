@@ -15,7 +15,7 @@ Authorization: Token 1ce6a1638fca7c95b7d15471a0d30c7a9835a639
 POST http://127.0.0.1:8000/auth/logout/ HTTP/1.1
 
 ### Registeration -> Done
-POST http://127.0.0.1:8000/auth/registration/ HTTP/1.1
+POST https://todo-fullstack-application-production.up.railway.app/auth/registration/ HTTP/1.1
 Content-Type: application/json
 
 {
