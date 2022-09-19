@@ -108,16 +108,3 @@ REST_FRAMEWORK = {
 }
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
-
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'), # HOST = localhost only if I run the database server in local machine
-        'PORT': '5877',
-    }
-}
