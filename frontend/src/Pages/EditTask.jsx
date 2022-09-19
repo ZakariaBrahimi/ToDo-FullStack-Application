@@ -22,7 +22,7 @@ const EditTask = () => {
                 "id": data.id
             }
         }).then((response)=>{
-          console.log(response.data) //TODO: handel the success alert functionality
+          console.log(response.data) //TODO: handel the success alert functionality..
             navigate('/tasks-list')
         }).catch((err)=>console.log(err)) //TODO: handel the error alert functionality
     }
