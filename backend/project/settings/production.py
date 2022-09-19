@@ -23,4 +23,15 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER") #TODO: Change the email and password
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('Name'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'), # HOST = localhost only if I run the database server in local machine
+        'PORT': '5877',
+    }
+}
+
 CORS_ALLOWED_ORIGINS = ['https://to-do-full-stack-application.vercel.app/', ] # A list of origins that are authorized to make cross-site HTTP requests
