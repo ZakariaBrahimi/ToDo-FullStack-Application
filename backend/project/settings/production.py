@@ -28,7 +28,7 @@ EMAIL_USE_TLS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "DATABASE_URL": env('DATABASE_URL'),
+        "DATABASE_URL": env('DATABASE_URL0'),
         'NAME': env('NAME'),
         'USER': env('USER'),
         'PASSWORD': env('PASSWORD'),
