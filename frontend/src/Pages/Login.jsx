@@ -9,7 +9,9 @@ const Login = () => {
     let navigate = useNavigate();
 
     const login = (e)=>{
+
         e.preventDefault()
+        console.log('before sending the request')
         axios({
             baseURL: 'https://todo-fullstack-application-production.up.railway.app',
             url: '/auth/login/',
