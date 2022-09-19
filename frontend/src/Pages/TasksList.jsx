@@ -12,7 +12,7 @@ export default function TasksList() {
 
   useEffect(()=>{
     axios({
-      baseURL: "http://127.0.0.1:8000",
+      baseURL: process.env.REACT_APP_API_URL,
       url: '/api/tasks-list/',
       method: 'get',
       headers:{"Authorization": `Token ${window.localStorage.getItem('token')}`}

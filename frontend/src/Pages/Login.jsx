@@ -4,7 +4,6 @@ import { useState } from "react"
 
 
 const Login = () => {
-    
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     let navigate = useNavigate();
@@ -12,7 +11,7 @@ const Login = () => {
     const login = (e)=>{
         e.preventDefault()
         axios({
-            baseURL: 'http://127.0.0.1:8000',
+            baseURL: process.env.REACT_APP_API_URL,
             url: '/auth/login/',
             method: 'post',
             headers:{

@@ -7,7 +7,7 @@ export default function Navbar() {
     const logout = ()=>{
         axios({
             url: '/auth/logout/',
-            baseURL: 'http://127.0.0.1:8000',
+            baseURL: process.env.REACT_APP_API_URL,
             method: 'post',
         }).then(()=>{
             window.localStorage.removeItem('token')

@@ -6,7 +6,7 @@ export default function Task({task, setTasks}) {
   const [isRemoved, setIsRemoved] = useState(false)
   const removeHandler = ()=>{
     axios({
-      baseURL: "http://127.0.0.1:8000",
+      baseURL: process.env.REACT_APP_API_URL,
       method: 'post',
       url: '/api/remove-task/',
       headers:{
@@ -26,7 +26,7 @@ export default function Task({task, setTasks}) {
   
   const statusHandler = ()=>{
     axios({
-      baseURL: "http://127.0.0.1:8000",
+      baseURL: process.env.REACT_APP_API_URL,
       method: 'post',
       url: '/api/change-status/',
       headers:{

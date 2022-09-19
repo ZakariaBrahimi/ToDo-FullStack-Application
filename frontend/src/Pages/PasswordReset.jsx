@@ -9,7 +9,7 @@ const PasswordReset = () => {
   const passwordReset = (e)=>{
     e.preventDefault()
         axios({
-            baseURL: 'http://127.0.0.1:8000',
+            baseURL: process.env.REACT_APP_API_URL,
             url: '/auth/password/reset/',
             method: 'post',
             headers:{

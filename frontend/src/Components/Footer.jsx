@@ -4,8 +4,8 @@ import axios from 'axios'
 const Footer = ({tasks, setTasks}) => {
     const clearAllCompletedTasks = ()=>{
         axios({
-          baseURL: "http://127.0.0.1:8000/api",
-          url: "/clear-all-completed-tasks/",
+          baseURL: process.env.REACT_APP_API_URL,
+          url: "/api/clear-all-completed-tasks/",
           method: 'post',
           headers:{
             "Content-Type": "application/json",

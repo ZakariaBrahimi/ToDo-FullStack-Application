@@ -10,9 +10,9 @@ const EditTask = () => {
     let editTask = (e)=>{
         e.preventDefault()
         axios({
-            baseURL: 'http://127.0.0.1:8000/api',
+            baseURL: process.env.REACT_APP_API_URL,
             method: 'post',
-            url: '/edit-task/',
+            url: '/api/edit-task/',
             headers:{
                 "Authorization": `Token ${window.localStorage.getItem('token')}`,
                 "Content-Type": "application/json"
