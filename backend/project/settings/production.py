@@ -23,6 +23,8 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER") #TODO: Change the email and password
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
