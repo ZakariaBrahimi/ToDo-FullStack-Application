@@ -13,7 +13,7 @@ const Login = () => {
         e.preventDefault()
         console.log('before sending the request')
         axios({
-            baseURL: 'https://todo-fullstack-application-production.up.railway.app',
+            baseURL: process.env.REACT_APP_API_URL,
             url: '/auth/login/',
             method: 'post',
             headers:{
