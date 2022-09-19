@@ -27,8 +27,8 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "DATABASE_URL": env('DATABASE_URL0'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        "DATABASE_URL": env('DATABASE_URL'),
         'NAME': env('NAME'),
         'USER': env('USER'),
         'PASSWORD': env('PASSWORD'),
@@ -37,4 +37,4 @@ DATABASES = {
     }
 }
 
-CORS_ALLOWED_ORIGINS = ['https://to-do-full-stack-application.vercel.app/', ] # A list of origins that are authorized to make cross-site HTTP requests
+CORS_ALLOWED_ORIGINS = ['https://to-do-full-stack-application.vercel.app', ] # A list of origins that are authorized to make cross-site HTTP requests
