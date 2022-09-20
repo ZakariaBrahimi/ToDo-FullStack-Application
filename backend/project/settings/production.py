@@ -1,5 +1,6 @@
 from .common import *
 import environ
+import dj_database_url
 
 env = environ.Env()
 # reading .env file
@@ -24,17 +25,11 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
 # Database
+
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+DATABASE_URL = env('DATABASE_URL')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        "DATABASE_URL": env('DATABASE_URL'),
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'), # HOST = localhost only if I run the database server in local machine
-        'PORT': '5877',
-    }
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
 }
 
 CORS_ALLOWED_ORIGINS = ['https://to-do-full-stack-application.vercel.app', ] # A list of origins that are authorized to make cross-site HTTP requests
