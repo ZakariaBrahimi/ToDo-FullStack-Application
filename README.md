@@ -1,6 +1,5 @@
 # ToDo FullStack Application
 Todo Application using **React js** and **Django Rest Framework**.
-  * live preview [here](https://to-do-full-stack-application.vercel.app/) (only the client side, the api isn't deployed yet)
 ## Core functions:
 
 - **Sign up/Sign in**
